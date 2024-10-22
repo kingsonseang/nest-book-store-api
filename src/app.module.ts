@@ -6,6 +6,13 @@ import { AppService } from './app.service';
 import { BookModule } from './book/book.module';
 import { TerminusModule } from '@nestjs/terminus';
 import { MediaModule } from './media/media.module';
+import { AuthorModule } from './author/author.module';
+import { TransactionsModule } from './transactions/transactions.module';
+import { GenreModule } from './genre/genre.module';
+import { UsersModule } from './users/users.module';
+import { AuthModule } from './auth/auth.module';
+import { CartModule } from './cart/cart.module';
+import { OrderModule } from './order/order.module';
 
 @Module({
   imports: [
@@ -23,6 +30,13 @@ import { MediaModule } from './media/media.module';
     TerminusModule,
     BookModule,
     MediaModule,
+    AuthorModule,
+    TransactionsModule,
+    GenreModule,
+    UsersModule,
+    AuthModule,
+    CartModule,
+    OrderModule,
   ],
   controllers: [AppController],
   providers: [AppService],

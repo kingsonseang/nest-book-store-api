@@ -1,4 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { Types } from 'mongoose';
 
 export class CreateBookDto {
   @ApiProperty({
@@ -9,16 +11,19 @@ export class CreateBookDto {
   title: string;
 
   @ApiProperty({
-    description: 'Author of the book',
-    example: 'Lee Min Jee',
+    description: 'ID of the book author',
+    example: '669cde67e4a5fa0ebe14a58b',
   })
-  author: string;
+  @IsNotEmpty()
+  author: Types.ObjectId;
 
   @ApiProperty({
-    description: 'Genre ofi the book',
-    example: 'Romance',
+    description: 'Genre of the book (ObjectId reference to Genre)',
+    example: '614b1b3e4d7eeb001c09c9b8',
+    required: true,
   })
-  genre: string;
+  @IsNotEmpty()
+  genre: Types.ObjectId;
 
   @ApiProperty({
     description: 'Genre of the book',
@@ -26,6 +31,7 @@ export class CreateBookDto {
       "It was a beautiful winters night, and it was as cold as it had been on the first day i met her, she was more beautiful than the bright moon in the sky. I only wish i could go back and fix my past mistakes... If only i could maybe... No one would be hurt and she would still be here... I'm sorry cao cao",
     required: false,
   })
+  @IsString()
   description: string;
 
   @ApiProperty({
@@ -33,6 +39,8 @@ export class CreateBookDto {
     example: 53.29,
     required: true,
   })
+  @IsNotEmpty()
+  @IsNumber()
   price: number;
 
   @ApiProperty({
@@ -40,6 +48,8 @@ export class CreateBookDto {
     example: 4.5,
     required: true,
   })
+  @IsNotEmpty()
+  @IsNumber()
   rating: number;
 
   @ApiProperty({

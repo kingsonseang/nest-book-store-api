@@ -45,10 +45,12 @@ export class BookController {
   @Get('search')
   @ApiPaginatedResponse(Book)
   async search(
-    @Query('query') query: string,
     @Query() pageOptionsDto: PageOptionsDto,
+    @Query('query') query?: string,
+    @Query('author') author?: string,
+    @Query('genre') genre?: string,
   ) {
-    return await this.bookService.search(query, pageOptionsDto);
+    return await this.bookService.search(pageOptionsDto, query, author, genre);
   }
 
   @Get(':id')

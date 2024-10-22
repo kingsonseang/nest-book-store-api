@@ -1,5 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import { Document, Schema as MongooseSchema } from 'mongoose';
+import { Author } from 'src/author/schemas/author.schema';
+import { Genre } from 'src/genre/schemas/genre.schema';
 
 export type BookDocument = Book & Document;
 
@@ -8,11 +10,11 @@ export class Book {
   @Prop({ required: true })
   title: string;
 
-  @Prop({ required: true })
-  author: string;
+  @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'Author', required: true })
+  author: Author;
 
-  @Prop({ required: true })
-  genre: string;
+  @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'Genre', required: true })
+  genre: Genre;
 
   @Prop()
   description: string;
